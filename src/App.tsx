@@ -1,5 +1,5 @@
-import ThemeSwitch from './components/ThemeSwitch';
-import ThemeContextProvider from '../context/theme-context';
+import ThemeSwitch from '@/src/components/ThemeSwitch';
+import ThemeContextProvider from '@/context/theme-context';
 
 function App() {
   return (

@@ -1,5 +1,5 @@
 import { PropsWithChildren, useContext } from 'react';
-import { Theme } from '../lib/types';
+import { Theme } from '@/lib/types';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -9,7 +9,10 @@ type ThemeContextType = {
   toggleTheme: () => void;
 };
 
-export const ThemeContext = React.createContext<ThemeContextType | null>(null);
+export const ThemeContext = React.createContext<ThemeContextType>({
+  theme: 'light',
+  toggleTheme: () => {},
+});
 
 const ThemeContextProvider = ({ children }: PropsWithChildren) => {
   const [theme, setTheme] = useState<Theme>('light');

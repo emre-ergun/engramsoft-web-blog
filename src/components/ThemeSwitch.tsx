@@ -1,5 +1,5 @@
 import { BsMoon, BsSun } from 'react-icons/bs';
-import { useThemeContext } from '../../context/theme-context';
+import { useThemeContext } from '@/context/theme-context';
 
 const ThemeSwitch = () => {
   const { toggleTheme, theme } = useThemeContext();
