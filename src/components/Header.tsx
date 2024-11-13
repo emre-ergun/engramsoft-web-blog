@@ -3,9 +3,11 @@ import SvgLogo from '@/src/components/SvgLogo';
 
 function Header() {
   return (
-    <div className='fixed left-[50%] -translate-x-[50%] w-screen flex justify-evenly items-center'>
-      <SvgLogo style='w-[3rem] h-[3rem] fill-black dark:fill-white m-3'/>
-      <h1 className='text-3xl font-bold py-2'>EngramSoft's Blog</h1>
+    <div className='w-full flex justify-between items-center min-h-[64px]'>
+      <div className='flex items-center gap-2'>
+        <SvgLogo style='w-[3rem] h-[3rem] fill-black dark:fill-white' />
+        <h1 className='text-3xl font-bold'>EngramSoft's Blog</h1>
+      </div>
       <ThemeSwitch />
     </div>
   );
