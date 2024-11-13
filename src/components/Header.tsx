@@ -37,7 +37,11 @@ function Header() {
       </div>
       {isMenuOpen && (
         <div className='fixed flex flex-col gap-4 py-6 px-6 border-2 border-black rounded-md top-[64px] right-[8px] text-xl'>
-          <NavLink to={'/sign-in'} className='hover:text-violet-500 hover:underline'>
+          <NavLink
+            to={'/sign-in'}
+            className='hover:text-violet-500 hover:underline'
+            onClick={() => setIsMenuOpen(false)}
+          >
             Sign in
           </NavLink>
           <NavLink
