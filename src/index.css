@@ -12,6 +12,6 @@
   }
 
   body {
-    @apply bg-gray-50 text-gray-950 relative dark:bg-gray-950  dark:text-gray-50 dark:text-opacity-90;
+    @apply bg-gray-50 text-gray-950 relative;
   }
 }

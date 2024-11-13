@@ -1,4 +1,3 @@
-import ThemeContextProvider from '@/context/theme-context';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -20,11 +19,7 @@ const router = createBrowserRouter(
   )
 );
 function App() {
-  return (
-    <ThemeContextProvider>
-      <RouterProvider router={router} />
-    </ThemeContextProvider>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
