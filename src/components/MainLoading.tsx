@@ -1,4 +1,4 @@
-import SvgLogo from './SvgLogo';
+// import SvgLogo from './SvgLogo';
 
 function MainLoading() {
   return (
