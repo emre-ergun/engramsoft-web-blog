@@ -14,13 +14,28 @@ function Header() {
       </Link>
       <div className='flex items-end justify-center gap-4'>
         <div className='hidden sm:flex items-end gap-4 text-xl'>
-          <NavLink to={'/'} className=' hover:text-violet-500'>
+          <NavLink
+            to={'/'}
+            className={({ isActive }) =>
+              isActive ? 'text-violet-500' : 'text-black hover:text-violet-500'
+            }
+          >
             Home
           </NavLink>
-          <NavLink to={'/about'} className='hover:text-violet-500'>
+          <NavLink
+            to={'/about'}
+            className={({ isActive }) =>
+              isActive ? 'text-violet-500' : 'text-black hover:text-violet-500'
+            }
+          >
             About
           </NavLink>
-          <NavLink to={'/sign-in'} className='hover:text-violet-500'>
+          <NavLink
+            to={'/sign-in'}
+            className={({ isActive }) =>
+              isActive ? 'text-violet-500' : 'text-black hover:text-violet-500'
+            }
+          >
             Sign in
           </NavLink>
         </div>
@@ -39,21 +54,27 @@ function Header() {
         <div className='fixed flex flex-col gap-4 py-6 px-6 border-2 border-black rounded-md top-[64px] right-[8px] text-xl'>
           <NavLink
             to={'/sign-in'}
-            className='hover:text-violet-500 hover:underline'
+            className={({ isActive }) =>
+              isActive ? 'text-violet-500' : 'text-black hover:text-violet-500'
+            }
             onClick={() => setIsMenuOpen(false)}
           >
             Sign in
           </NavLink>
           <NavLink
             to={'/'}
-            className='hover:text-violet-500 hover:underline'
+            className={({ isActive }) =>
+              isActive ? 'text-violet-500' : 'text-black hover:text-violet-500'
+            }
             onClick={() => setIsMenuOpen(false)}
           >
             Home
           </NavLink>
           <NavLink
             to={'/about'}
-            className='hover:text-violet-500 hover:underline'
+            className={({ isActive }) =>
+              isActive ? 'text-violet-500' : 'text-black hover:text-violet-500'
+            }
             onClick={() => setIsMenuOpen(false)}
           >
             About

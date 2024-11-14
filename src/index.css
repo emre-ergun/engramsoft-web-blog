@@ -14,8 +14,4 @@
   body {
     @apply bg-gray-50 text-gray-950 relative;
   }
-
-  .active {
-    @apply text-violet-500;
-  }
 }
