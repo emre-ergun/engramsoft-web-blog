@@ -1,4 +1,4 @@
-function SvgLogo({ style }: { style: string }) {
+function SvgLogo({ style }: { style?: string }) {
   return (
     <div>
       <svg
@@ -8,7 +8,7 @@ function SvgLogo({ style }: { style: string }) {
         height='502.000000pt'
         viewBox='0 0 564.000000 502.000000'
         preserveAspectRatio='xMidYMid meet'
-        className={style}
+        className={`w-[16rem] h-[16rem] ${style && style}`}
       >
         <g
           transform='translate(0.000000,502.000000) scale(0.100000,-0.100000)'

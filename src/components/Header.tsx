@@ -1,4 +1,4 @@
-import SvgLogo from '@/src/components/SvgLogo';
+// import SvgLogo from '@/src/components/SvgLogo';
 import { Link, NavLink } from 'react-router-dom';
 import { RxCross1, RxHamburgerMenu } from 'react-icons/rx';
 import { useState } from 'react';
@@ -9,11 +9,11 @@ function Header() {
   return (
     <div className='w-full flex justify-between items-end min-h-[48px]'>
       <Link to='/' className='flex items-end gap-2'>
-        <SvgLogo style='w-[3rem] h-[3rem] fill-black' />
-        <h1 className='text-3xl font-bold'>EngramSoft's Blog</h1>
+        {/* <SvgLogo style='w-[3rem] h-[3rem] fill-black' /> */}
+        <h1 className='text-xl border-2 border-black px-2 py-1'>ENGRAM.</h1>
       </Link>
       <div className='flex items-end justify-center gap-4'>
-        <div className='hidden sm:flex items-end gap-4 text-xl'>
+        <div className='hidden sm:flex items-end gap-4 text-lg'>
           <NavLink
             to={'/'}
             className={({ isActive }) =>
@@ -51,7 +51,7 @@ function Header() {
         </div>
       </div>
       {isMenuOpen && (
-        <div className='fixed flex flex-col gap-4 py-6 px-6 border-2 border-black rounded-md top-[64px] right-[8px] text-xl'>
+        <div className='fixed flex flex-col gap-4 py-6 px-6 border-2 border-black rounded-md top-[64px] right-[8px] text-lg'>
           <NavLink
             to={'/sign-in'}
             className={({ isActive }) =>
