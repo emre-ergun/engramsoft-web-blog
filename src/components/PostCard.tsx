@@ -15,7 +15,7 @@ function PostCard({ title, content, keywords }: PostCardProps) {
           {keywords.map(keyword => (
             <li
               key={keyword}
-              className='bg-secondary text-fourth rounded-full px-2 py-1 text-xs'
+              className='bg-secondary text-fourth px-2 py-1 text-xs'
             >
               #{keyword}
             </li>
