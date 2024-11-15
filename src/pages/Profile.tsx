@@ -9,14 +9,14 @@ function Profile() {
     await supabase.auth.signOut();
   };
 
-  if (!session) return <Navigate to='/' replace/>;
+  if (!session) return <Navigate to='/' replace />;
 
   return (
     <div className='h-[calc(100vh-48px)] w-full flex flex-col items-center justify-center'>
       Profile
       <button
         onClick={signOutHandler}
-        className='flex items-center justify-center px-4 py-2 border bg-gray-900 text-white outline-none transition-all focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105'
+        className='flex items-center justify-center gap-2 h-[2rem] px-4 bg-secondary text-fourth outline-none transition-all focus:scale-110 hover:scale-110 hover:bg-third active:scale-105 disabled:scale-100 disabled:bg-opacity-65'
       >
         Sign Out
       </button>

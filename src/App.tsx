@@ -8,6 +8,7 @@ import SignUp from '@/src/pages/SignUp';
 import AuthLayout from '@/src/layouts/AuthLayout';
 import Profile from '@/src/pages/Profile';
 import AuthProvider from '@/context/AuthContext';
+import NewPost from '@/src/pages/NewPost';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path='/' element={<MainLayout />}>
             <Route index element={<Home />} />
+            <Route path='new-post' element={<NewPost />} />
             <Route path='about' element={<About />} />
           </Route>
           <Route path='/' element={<AuthLayout />}>

@@ -58,7 +58,7 @@ function SignUp() {
 
         <button
           type='submit'
-          className='group flex items-center justify-center gap-2 h-[2rem] w-full bg-gray-900 text-white outline-none transition-all focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 disabled:scale-100 disabled:bg-opacity-65'
+          className='flex items-center justify-center gap-2 h-[2rem] w-full bg-secondary text-fourth outline-none transition-all focus:scale-110 hover:scale-110 hover:bg-third active:scale-105 disabled:scale-100 disabled:bg-opacity-65'
           disabled={loading}
         >
           {loading ? (

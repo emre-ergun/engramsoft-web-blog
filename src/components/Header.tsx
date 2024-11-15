@@ -1,8 +1,11 @@
 // import SvgLogo from '@/src/components/SvgLogo';
 import { Link, NavLink } from 'react-router-dom';
 import { RxCross1, RxHamburgerMenu } from 'react-icons/rx';
+import { BsPersonVideo3 } from 'react-icons/bs';
 import { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
+// import 'react-tooltip/dist/react-tooltip.css';
+import { Tooltip } from 'react-tooltip';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,14 +15,14 @@ function Header() {
     <div className='w-full flex justify-between items-center min-h-[48px]'>
       <Link to='/' className='flex items-end gap-2'>
         {/* <SvgLogo style='w-[3rem] h-[3rem] fill-black' /> */}
-        <h1 className='text-xl border-2 border-black px-2 py-1'>ENGRAM.</h1>
+        <h1 className='text-xl border-2 border-primary px-2 py-1'>ENGRAM.</h1>
       </Link>
       <div className='relative flex items-center justify-center gap-4'>
         <div className='hidden sm:flex items-center gap-4 text-lg'>
           <NavLink
             to={'/'}
             className={({ isActive }) =>
-              isActive ? 'text-violet-500' : 'text-black hover:text-violet-500'
+              isActive ? 'text-secondary' : 'text-primary hover:text-secondary'
             }
           >
             Home
@@ -27,25 +30,40 @@ function Header() {
           <NavLink
             to={'/about'}
             className={({ isActive }) =>
-              isActive ? 'text-violet-500' : 'text-black hover:text-violet-500'
+              isActive ? 'text-secondary' : 'text-primary hover:text-secondary'
             }
           >
             About
           </NavLink>
           {session ? (
-            <NavLink
-              to={'/profile'}
-              className='text-xl border-2 border-black px-2 py-1 flex items-center justify-center'
-            >
-              {session.user.user_metadata.email.charAt(0).toUpperCase()}
-            </NavLink>
+            <>
+              <NavLink
+                to={'/new-post'}
+                className={({ isActive }) =>
+                  isActive
+                    ? 'text-secondary'
+                    : 'text-primary hover:text-secondary'
+                }
+              >
+                New Post
+              </NavLink>
+              <Tooltip id='my-tooltip' />
+              <NavLink
+                data-tooltip-id='my-tooltip'
+                data-tooltip-content={session.user.user_metadata.email}
+                to={'/profile'}
+                className='text-2xl flex items-center justify-center'
+              >
+                <BsPersonVideo3 className='text-third' />
+              </NavLink>
+            </>
           ) : (
             <NavLink
               to={'/sign-in'}
               className={({ isActive }) =>
                 isActive
-                  ? 'text-violet-500'
-                  : 'text-black hover:text-violet-500'
+                  ? 'text-secondary'
+                  : 'text-primary hover:text-secondary'
               }
             >
               Sign in
@@ -62,21 +80,35 @@ function Header() {
             <RxHamburgerMenu className='text-4xl' />
           )}
           {isMenuOpen && (
-            <div className='absolute flex flex-col gap-4 py-6 px-6 border-2 border-black top-[42px] right-0 text-center text-lg min-w-28'>
+            <div className='absolute flex flex-col gap-4 py-6 px-6 border-2 border-primary top-[42px] right-0 text-center text-lg min-w-36 bg-fourth z-[99]'>
               {session ? (
-                <NavLink
-                  to={'/profile'}
-                  className='flex items-center justify-center'
-                >
-                  {session.user.user_metadata.email.split('@')[0].toUpperCase()}
-                </NavLink>
+                <>
+                  <NavLink
+                    to={'/profile'}
+                    className='flex items-center justify-center hover:text-secondary'
+                  >
+                    {session.user.user_metadata.email
+                      .split('@')[0]
+                      .toUpperCase()}
+                  </NavLink>
+                  <NavLink
+                    to={'/new-post'}
+                    className={({ isActive }) =>
+                      isActive
+                        ? 'text-secondary'
+                        : 'text-primary hover:text-secondary'
+                    }
+                  >
+                    New Post
+                  </NavLink>
+                </>
               ) : (
                 <NavLink
                   to={'/sign-in'}
                   className={({ isActive }) =>
                     isActive
-                      ? 'text-violet-500'
-                      : 'text-black hover:text-violet-500'
+                      ? 'text-secondary'
+                      : 'text-primary hover:text-secondary'
                   }
                 >
                   Sign in
@@ -86,10 +118,9 @@ function Header() {
                 to={'/'}
                 className={({ isActive }) =>
                   isActive
-                    ? 'text-violet-500'
-                    : 'text-black hover:text-violet-500'
+                    ? 'text-secondary'
+                    : 'text-primary hover:text-secondary'
                 }
-                onClick={() => setIsMenuOpen(false)}
               >
                 Home
               </NavLink>
@@ -97,10 +128,9 @@ function Header() {
                 to={'/about'}
                 className={({ isActive }) =>
                   isActive
-                    ? 'text-violet-500'
-                    : 'text-black hover:text-violet-500'
+                    ? 'text-secondary'
+                    : 'text-primary hover:text-secondary'
                 }
-                onClick={() => setIsMenuOpen(false)}
               >
                 About
               </NavLink>

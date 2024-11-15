@@ -30,7 +30,7 @@ function SignIn() {
         <div className='flex flex-col items-start'>
           <h1>Email:</h1>
           <input
-            className='h-[2rem] px-4 border border-black/10'
+            className='h-[2rem] px-4 border border-secondary'
             name='senderEmail'
             type='email'
             value={formData.email}
@@ -43,7 +43,7 @@ function SignIn() {
         <div className='flex flex-col items-start'>
           <h1>Password:</h1>
           <input
-            className='h-[2rem] px-4 border border-black/10'
+            className='h-[2rem] px-4 border border-secondary'
             name='senderEmail'
             type='password'
             value={formData.password}
@@ -58,7 +58,7 @@ function SignIn() {
 
         <button
           type='submit'
-          className='group flex items-center justify-center gap-2 h-[2rem] w-full bg-gray-900 text-white outline-none transition-all focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 disabled:scale-100 disabled:bg-opacity-65'
+          className='flex items-center justify-center gap-2 h-[2rem] w-full bg-secondary text-fourth outline-none transition-all focus:scale-110 hover:scale-110 hover:bg-third active:scale-105 disabled:scale-100 disabled:bg-opacity-65'
           disabled={loading}
         >
           {loading ? (
@@ -69,7 +69,7 @@ function SignIn() {
         </button>
       </form>
       <div>
-        <a href='/sign-up' className='text-sm text-gray-600'>
+        <a href='/sign-up' className='text-sm text-secondary'>
           I don't have an account. <span className='underline'>Sign Up</span>
         </a>
       </div>
