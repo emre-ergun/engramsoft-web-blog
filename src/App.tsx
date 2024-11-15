@@ -1,37 +1,32 @@
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import MainLayout from '@/src/layouts/MainLayout';
 import Home from '@/src/pages/Home';
 import About from '@/src/pages/About';
 import NotFound from '@/src/pages/NotFound';
 import SignIn from '@/src/pages/SignIn';
+import SignUp from '@/src/pages/SignUp';
+import AuthLayout from '@/src/layouts/AuthLayout';
+import Profile from '@/src/pages/Profile';
+import AuthProvider from '@/context/AuthContext';
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path='/' element={<MainLayout />}>
-      <Route index element={<Home />} />
-      <Route path='sign-in' element={<SignIn />} />
-      <Route path='about' element={<About />} />
-      <Route path='*' element={<NotFound />} />
-    </Route>
-  ),
-  {
-    future: {
-      v7_fetcherPersist: true,
-      v7_normalizeFormMethod: true,
-      v7_partialHydration: true,
-      v7_relativeSplatPath: true,
-      v7_skipActionErrorRevalidation: true,
-    },
-  }
-);
 function App() {
   return (
-    <RouterProvider router={router} future={{ v7_startTransition: true }} />
+    <AuthProvider>
+      <Router future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
+        <Routes>
+          <Route path='/' element={<MainLayout />}>
+            <Route index element={<Home />} />
+            <Route path='about' element={<About />} />
+          </Route>
+          <Route path='auth' element={<AuthLayout />}>
+            <Route path='sign-in' element={<SignIn />} />
+            <Route path='sign-up' element={<SignUp />} />
+          </Route>
+          <Route path='profile' element={<Profile />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 

@@ -2,16 +2,15 @@ import { supabase } from '@/lib/supabase';
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 
-function SignIn() {
+function SignUp() {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  async function signInWithPassword(event: React.FormEvent<HTMLFormElement>) {
+  async function signUpWithEmail(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setLoading(true);
-    setIsAuthenticated(false);
-    const { error } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signUp({
       email: formData.email,
       password: formData.password,
     });
@@ -19,15 +18,15 @@ function SignIn() {
     if (error) {
       alert(error.message);
     }
-
     setLoading(false);
     setIsAuthenticated(true);
   }
+
   if (isAuthenticated) return <Navigate replace to='/' />;
-  
+
   return (
     <div className='h-[calc(100vh-128px)] w-full flex flex-col items-center justify-center'>
-      <form className='mt-10 flex flex-col gap-4' onSubmit={signInWithPassword}>
+      <form className='mt-10 flex flex-col gap-4' onSubmit={signUpWithEmail}>
         <div className='flex flex-col items-start'>
           <h1>Email:</h1>
           <input
@@ -65,17 +64,17 @@ function SignIn() {
           {loading ? (
             <div className='h-5 w-5 animate-spin rounded-full border-b-2 border-white'></div>
           ) : (
-            <>Sign In</>
+            <>Sign Up</>
           )}
         </button>
       </form>
       <div>
-        <a href='/auth/sign-up' className='text-sm text-gray-600'>
-          I don't have an account. <span className='underline'>Sign Up</span>
+        <a href='/auth/sign-in' className='text-sm text-gray-600'>
+          I have an account. <span className='underline'>Sign In</span>
         </a>
       </div>
     </div>
   );
 }
 
-export default SignIn;
+export default SignUp;
