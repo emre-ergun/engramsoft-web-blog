@@ -1,16 +1,16 @@
 import { supabase } from '@/lib/supabase';
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import { useAuth } from '@/context/AuthContext';
 
 function SignIn() {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '' });
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { session } = useAuth();
 
   async function signInWithPassword(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setLoading(true);
-    setIsAuthenticated(false);
     const { error } = await supabase.auth.signInWithPassword({
       email: formData.email,
       password: formData.password,
@@ -21,10 +21,9 @@ function SignIn() {
     }
 
     setLoading(false);
-    setIsAuthenticated(true);
   }
-  if (isAuthenticated) return <Navigate replace to='/' />;
-  
+  if (session) return <Navigate replace to='/' />;
+
   return (
     <div className='h-[calc(100vh-128px)] w-full flex flex-col items-center justify-center'>
       <form className='mt-10 flex flex-col gap-4' onSubmit={signInWithPassword}>
@@ -70,7 +69,7 @@ function SignIn() {
         </button>
       </form>
       <div>
-        <a href='/auth/sign-up' className='text-sm text-gray-600'>
+        <a href='/sign-up' className='text-sm text-gray-600'>
           I don't have an account. <span className='underline'>Sign Up</span>
         </a>
       </div>

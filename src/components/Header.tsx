@@ -41,7 +41,7 @@ function Header() {
             </NavLink>
           ) : (
             <NavLink
-              to={'/auth/sign-in'}
+              to={'/sign-in'}
               className={({ isActive }) =>
                 isActive
                   ? 'text-violet-500'
@@ -72,7 +72,7 @@ function Header() {
                 </NavLink>
               ) : (
                 <NavLink
-                  to={'/auth/sign-in'}
+                  to={'/sign-in'}
                   className={({ isActive }) =>
                     isActive
                       ? 'text-violet-500'

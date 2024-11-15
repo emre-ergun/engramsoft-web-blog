@@ -1,15 +1,9 @@
-import { useAuth } from '@/context/AuthContext';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 function AuthLayout() {
-  const { session } = useAuth();
-
-  if (session) {
-    return <Navigate to='/' replace />;
-  }
-
   return (
-    <div>
+    <div className='flex flex-col items-center justify-center'>
+      <div>auth layout</div>
       <Outlet />
     </div>
   );

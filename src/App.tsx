@@ -18,11 +18,11 @@ function App() {
             <Route index element={<Home />} />
             <Route path='about' element={<About />} />
           </Route>
-          <Route path='auth' element={<AuthLayout />}>
+          <Route path='/' element={<AuthLayout />}>
             <Route path='sign-in' element={<SignIn />} />
             <Route path='sign-up' element={<SignUp />} />
+            <Route path='profile' element={<Profile />} />
           </Route>
-          <Route path='profile' element={<Profile />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Router>

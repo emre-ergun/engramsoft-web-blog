@@ -1,3 +1,4 @@
+import { useAuth } from '@/context/AuthContext';
 import { supabase } from '@/lib/supabase';
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
@@ -5,7 +6,7 @@ import { Navigate } from 'react-router-dom';
 function SignUp() {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '' });
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { session } = useAuth();
 
   async function signUpWithEmail(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -19,10 +20,9 @@ function SignUp() {
       alert(error.message);
     }
     setLoading(false);
-    setIsAuthenticated(true);
   }
 
-  if (isAuthenticated) return <Navigate replace to='/' />;
+  if (session) return <Navigate replace to='/' />;
 
   return (
     <div className='h-[calc(100vh-128px)] w-full flex flex-col items-center justify-center'>
@@ -69,7 +69,7 @@ function SignUp() {
         </button>
       </form>
       <div>
-        <a href='/auth/sign-in' className='text-sm text-gray-600'>
+        <a href='/sign-in' className='text-sm text-gray-600'>
           I have an account. <span className='underline'>Sign In</span>
         </a>
       </div>
