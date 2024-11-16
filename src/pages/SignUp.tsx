@@ -30,7 +30,7 @@ function SignUp() {
         <div className='flex flex-col items-start'>
           <h1>Email:</h1>
           <input
-            className='h-[2rem] px-4 border border-black/10'
+            className='h-[2rem] px-4 border border-secondary'
             name='senderEmail'
             type='email'
             value={formData.email}
@@ -43,7 +43,7 @@ function SignUp() {
         <div className='flex flex-col items-start'>
           <h1>Password:</h1>
           <input
-            className='h-[2rem] px-4 border border-black/10'
+            className='h-[2rem] px-4 border border-secondary'
             name='senderEmail'
             type='password'
             value={formData.password}
