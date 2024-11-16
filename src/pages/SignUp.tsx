@@ -69,7 +69,7 @@ function SignUp() {
         </button>
       </form>
       <div>
-        <a href='/sign-in' className='text-sm text-gray-600'>
+        <a href='/sign-in' className='text-sm text-secondary'>
           I have an account. <span className='underline'>Sign In</span>
         </a>
       </div>
