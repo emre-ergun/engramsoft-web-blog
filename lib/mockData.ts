@@ -2,6 +2,7 @@ import { Post } from '@/lib/types';
 
 export const mockPostCards: Post[] = [
   {
+    id: 1,
     title: 'Introduction to TypeScript',
     content:
       'TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.',
@@ -10,6 +11,7 @@ export const mockPostCards: Post[] = [
     timestamp: '2023-10-01T10:00:00Z',
   },
   {
+    id: 2,
     title: 'Understanding React Hooks',
     content:
       'React Hooks are functions that let you use state and other React features without writing a class.',
@@ -18,6 +20,7 @@ export const mockPostCards: Post[] = [
     timestamp: '2023-10-02T12:00:00Z',
   },
   {
+    id: 3,
     title: 'Advanced JavaScript Concepts',
     content:
       'This post covers advanced JavaScript concepts such as closures, prototypes, and async/await.',
@@ -26,6 +29,7 @@ export const mockPostCards: Post[] = [
     timestamp: '2023-10-03T14:00:00Z',
   },
   {
+    id: 4,
     title: 'Getting Started with Node.js',
     content:
       'Node.js is a JavaScript runtime built on Chrome\'s V8 JavaScript engine.',
@@ -34,6 +38,7 @@ export const mockPostCards: Post[] = [
     timestamp: '2023-10-04T16:00:00Z',
   },
   {
+    id: 5,
     title: 'CSS Grid Layout',
     content:
       'CSS Grid Layout is a two-dimensional layout system for the web.',
@@ -42,6 +47,7 @@ export const mockPostCards: Post[] = [
     timestamp: '2023-10-05T18:00:00Z',
   },
   {
+    id: 6,
     title: 'Introduction to GraphQL',
     content:
       'GraphQL is a query language for your API, and a server-side runtime for executing queries.',
@@ -50,6 +56,7 @@ export const mockPostCards: Post[] = [
     timestamp: '2023-10-06T20:00:00Z',
   },
   {
+    id: 7,
     title: 'Building RESTful APIs with Express',
     content:
       'Express is a minimal and flexible Node.js web application framework.',
@@ -58,6 +65,7 @@ export const mockPostCards: Post[] = [
     timestamp: '2023-10-07T22:00:00Z',
   },
   {
+    id: 8,
     title: 'State Management with Redux',
     content:
       'Redux is a predictable state container for JavaScript apps.',
@@ -66,6 +74,7 @@ export const mockPostCards: Post[] = [
     timestamp: '2023-10-08T08:00:00Z',
   },
   {
+    id: 9,
     title: 'Testing with Jest',
     content:
       'Jest is a delightful JavaScript Testing Framework with a focus on simplicity.',
@@ -74,6 +83,7 @@ export const mockPostCards: Post[] = [
     timestamp: '2023-10-09T10:00:00Z',
   },
   {
+    id: 10,
     title: 'Introduction to Docker',
     content:
       'Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers.',
@@ -82,6 +92,7 @@ export const mockPostCards: Post[] = [
     timestamp: '2023-10-10T12:00:00Z',
   },
   {
+    id: 11,
     title: 'Microservices Architecture',
     content:
       'Microservices is an architectural style that structures an application as a collection of loosely coupled services.',

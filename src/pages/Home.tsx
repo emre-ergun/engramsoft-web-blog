@@ -8,8 +8,8 @@ function Home() {
         <p className='text-4xl font-bold'>Hello There!</p>
       </div>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8'>
-        {mockPostCards.map((post, index) => (
-          <div key={index} className='min-h-[400px]'>
+        {mockPostCards.map(post => (
+          <div key={post.id} className='min-h-[400px]'>
             <PostCard {...post} />
           </div>
         ))}

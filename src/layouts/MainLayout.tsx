@@ -4,7 +4,7 @@ import Footer from '@/src/components/Footer';
 
 const MainLayout = () => {
   return (
-    <div className='px-2 flex flex-col items-center max-w-screen-lg mx-auto'>
+    <div className='relative px-4 flex flex-col items-center max-w-screen-lg mx-auto'>
       <Header />
       <Outlet />
       <Footer />
