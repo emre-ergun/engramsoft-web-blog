@@ -15,7 +15,7 @@ function PostCard({
   const newDate = new Date(timestamp).toLocaleDateString();
 
   return (
-    <div className='group relative flex flex-col bg-fourth shadow-md p-2 h-full'>
+    <div className='group relative flex flex-col bg-fourth shadow-xl p-2 h-full'>
       <div className='absolute top-0 left-0 w-full h-full overflow-hidden group-hover:scale-[1.05] transition-all duration-500'>
         <img
           src={`https://picsum.photos/1920/1080.webp?t=${id}`}

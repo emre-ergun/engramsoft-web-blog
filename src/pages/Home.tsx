@@ -2,6 +2,7 @@ import { mockPostCards } from '@/lib/mockData';
 import PostCard from '../components/PostCard';
 import { BsArrowRight } from 'react-icons/bs';
 import { CiSearch } from 'react-icons/ci';
+import { GoDash } from 'react-icons/go';
 import { useState } from 'react';
 import { Post } from '@/lib/types';
 import { useAuth } from '@/context/AuthContext';
@@ -9,10 +10,14 @@ import { useAuth } from '@/context/AuthContext';
 function Home() {
   const { session } = useAuth();
   const [postCards, setPostcards] = useState<Post[]>(mockPostCards.slice(0, 7));
+  const [allLoaded, setAllLoaded] = useState(false);
 
   const loadMoreHandle = () => {
     const currentLength = postCards.length;
-    if (currentLength >= mockPostCards.length) return;
+    if (currentLength >= mockPostCards.length) {
+      setAllLoaded(true);
+      return;
+    }
     const additionalPosts = mockPostCards.slice(
       currentLength,
       currentLength + 5
@@ -35,10 +40,13 @@ function Home() {
           }}
           className='w-full flex items-center justify-center'
         >
-          <div className='relative h-12 w-full'>
+          <div className='relative h-12 w-full shadow-lg'>
             <input
+              id='search'
+              name='search'
+              type='text'
               placeholder='search for posts'
-              className='h-full w-full pl-2 text-center'
+              className='h-full w-full pl-2 text-center border border-secondary focus:outline-secondary'
               maxLength={100}
             ></input>
             <button
@@ -58,15 +66,21 @@ function Home() {
         ))}
       </div>
       <div className='flex items-center justify-center mt-6 '>
-        <div
+        <button
           onClick={loadMoreHandle}
           className='group flex items-center justify-center gap-1 cursor-pointer'
+          disabled={allLoaded}
         >
-          <p className='text-lg group-hover:-translate-x-1 transition-all duration-300'>
-            Load More
-          </p>
-          <BsArrowRight className='text-lg group-hover:translate-x-1 group-hover:rotate-90 transition-all duration-300' />
-        </div>
+          {allLoaded && (
+            <GoDash className='text-lg group-hover:-translate-x-1 transition-all duration-300' />
+          )}
+          <p className='text-lg'>{allLoaded ? 'No More Posts' : 'Load More'}</p>
+          {allLoaded ? (
+            <GoDash className='text-lg group-hover:translate-x-1 transition-all duration-300' />
+          ) : (
+            <BsArrowRight className='text-lg group-hover:translate-x-1 group-hover:rotate-90 transition-all duration-300' />
+          )}
+        </button>
       </div>
     </div>
   );
