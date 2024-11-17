@@ -5,10 +5,9 @@ import { CiSearch } from 'react-icons/ci';
 import { GoDash } from 'react-icons/go';
 import { useState } from 'react';
 import { Post } from '@/lib/types';
-import { useAuth } from '@/context/AuthContext';
+import Qoute from '@/src/components/Qoute';
 
 function Home() {
-  const { session } = useAuth();
   const [postCards, setPostcards] = useState<Post[]>(mockPostCards.slice(0, 7));
   const [allLoaded, setAllLoaded] = useState(false);
 
@@ -27,12 +26,8 @@ function Home() {
 
   return (
     <div className='min-h-[calc(100vh-48px)] w-full flex flex-col gap-4 justify-center mt-10'>
-      <div className='my-10'>
-        <p className='text-4xl font-bold'>
-          Hello {session ? session.user.email?.split('@')[0] : 'Guest'} 👋🏻
-        </p>
-      </div>
-      <div className='flex items-center justify-center my-5 w-full'>
+      <Qoute />
+      <div className='flex items-center justify-center my-10 w-full'>
         <form
           onSubmit={e => {
             e.preventDefault();
@@ -40,13 +35,13 @@ function Home() {
           }}
           className='w-full flex items-center justify-center'
         >
-          <div className='relative h-12 w-full shadow-lg'>
+          <div className='relative h-12 w-full sm:w-4/5 shadow-lg rounded-full'>
             <input
               id='search'
               name='search'
               type='text'
               placeholder='search for posts'
-              className='h-full w-full pl-2 text-center border border-secondary focus:outline-secondary'
+              className='h-full w-full pl-2 text-center rounded-full border border-secondary focus:outline-secondary'
               maxLength={100}
             ></input>
             <button
