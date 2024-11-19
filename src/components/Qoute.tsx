@@ -22,24 +22,25 @@ function Qoute() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(url, options);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+      try {
+        const response = await fetch(url, options);
+        const result = await response.json();
+
+        if (result.message) {
+          console.log(result.message);
+        } else {
+          setData({
+            id: result.id,
+            content: result.content,
+            author: result.originator.name,
+          });
+        }
+      } catch (error) {
+        console.log(error);
       }
-      const result = await response.json();
-      console.log(result);
-      setData({
-        id: result.id,
-        content: result.content,
-        author: result.originator.name,
-      });
     };
 
-    try {
-      fetchData();
-    } catch (error) {
-      console.log(error);
-    }
+    fetchData();
   }, []);
 
   return (

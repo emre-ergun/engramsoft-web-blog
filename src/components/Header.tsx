@@ -1,7 +1,7 @@
 // import SvgLogo from '@/src/components/SvgLogo';
 import { Link, NavLink } from 'react-router-dom';
 import { RxCross1, RxHamburgerMenu } from 'react-icons/rx';
-import { BsPersonVideo3 } from 'react-icons/bs';
+import { GoPerson } from "react-icons/go";
 import { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 // import 'react-tooltip/dist/react-tooltip.css';
@@ -18,7 +18,7 @@ function Header() {
         <h1 className='text-xl border-2 border-primary px-2 py-1'>ENGRAM.</h1>
       </Link>
       <div className='relative flex items-center justify-center gap-4'>
-        <div className='hidden sm:flex items-center gap-4 text-lg'>
+        <div className='hidden sm:flex items-center justify-center gap-4 text-lg'>
           <NavLink
             to={'/'}
             className={({ isActive }) =>
@@ -52,9 +52,9 @@ function Header() {
                 data-tooltip-id='my-tooltip'
                 data-tooltip-content={session.user.user_metadata.email}
                 to={'/profile'}
-                className='text-2xl flex items-center justify-center'
+                className='text-2xl flex items-center justify-center border border-primary rounded-full'
               >
-                <BsPersonVideo3 className='text-third' />
+                <GoPerson className='text-third' />
               </NavLink>
             </>
           ) : (
