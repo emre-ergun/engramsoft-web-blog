@@ -11,4 +11,7 @@ export default defineConfig({
   resolve: {
     alias: [{ find: '@', replacement: path.resolve(__dirname, '.') }],
   },
+  build: {
+    chunkSizeWarningLimit: 1600,
+  },
 });
