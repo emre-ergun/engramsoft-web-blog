@@ -18,7 +18,7 @@ function TipTap({ content, onChange }: TipTapProps) {
     editorProps: {
       attributes: {
         class:
-          'flex flex-col px-4 py-3 justify-start border-b border-r border-l border-secondary items-start w-full gap-3 font-medium text-[16px] pt-4 outline-none bg-white break-all',
+          'flex flex-col px-4 py-3 justify-start border-b border-r border-l border-secondary items-start w-full font-medium text-[16px] outline-none bg-white break-all',
       },
     },
     onUpdate: ({ editor }) => {
