@@ -1,10 +1,9 @@
 // import SvgLogo from '@/src/components/SvgLogo';
 import { Link, NavLink } from 'react-router-dom';
 import { RxCross1, RxHamburgerMenu } from 'react-icons/rx';
-import { GoPerson } from "react-icons/go";
+import { GoPerson } from 'react-icons/go';
 import { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
-// import 'react-tooltip/dist/react-tooltip.css';
 import { Tooltip } from 'react-tooltip';
 
 function Header() {

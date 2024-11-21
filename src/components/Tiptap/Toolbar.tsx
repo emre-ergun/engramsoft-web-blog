@@ -1,19 +1,17 @@
 import { type Editor } from '@tiptap/react';
 import {
-  Bold,
-  Strikethrough,
-  Italic,
-  List,
-  ListOrdered,
-  Heading1,
-  Heading2,
-  Heading3,
-  Underline,
-  Quote,
-  Undo,
-  Redo,
-  Code,
-} from 'lucide-react';
+  FaBold,
+  FaItalic,
+  FaUnderline,
+  FaStrikethrough,
+  FaHeading,
+  FaListUl,
+  FaListOl,
+  FaCode,
+  FaQuoteRight,
+  FaYoutube,
+} from 'react-icons/fa6';
+import { FaUndo, FaRedo } from 'react-icons/fa';
 
 type ToolbarProps = {
   editor: Editor | null;
@@ -25,7 +23,7 @@ function Toolbar({ editor, content }: ToolbarProps) {
 
   return (
     <div className='relative px-4 py-3 flex justify-between items-center gap-5 w-full flex-wrap border border-secondary'>
-      <div className='flex justify-start items-center gap-5 w-full flex-wrap text-secondary'>
+      <div className='flex justify-start items-center gap-2 w-full flex-wrap text-secondary'>
         <div className='flex items-center justify-between'>
           <button
             onClick={e => {
@@ -38,7 +36,7 @@ function Toolbar({ editor, content }: ToolbarProps) {
                 : 'text-secondary border border-secondary rounded-tl-md rounded-bl-md hover:bg-secondary hover:text-fourth hover:border-fourth p-1'
             }
           >
-            <Undo className='w-5 h-5' />
+            <FaUndo className='w-5 h-5' />
           </button>
           <button
             onClick={e => {
@@ -51,7 +49,48 @@ function Toolbar({ editor, content }: ToolbarProps) {
                 : 'text-secondary border border-secondary rounded-tr-md rounded-br-md hover:bg-secondary hover:text-fourth hover:border-fourth p-1'
             }
           >
-            <Redo className='w-5 h-5' />
+            <FaRedo className='w-5 h-5' />
+          </button>
+        </div>
+        <div className='flex items-center justify-between'>
+          <button
+            onClick={e => {
+              e.preventDefault();
+              editor.chain().focus().toggleHeading({ level: 3 }).run();
+            }}
+            className={
+              editor.isActive('heading', { level: 3 })
+                ? 'bg-secondary text-fourth p-1 border border-fourth rounded-tl-md rounded-bl-md'
+                : 'text-secondary p-1 border border-secondary hover:bg-secondary hover:text-fourth rounded-tl-md rounded-bl-md'
+            }
+          >
+            <FaHeading className='w-3 h-3' />
+          </button>
+          <button
+            onClick={e => {
+              e.preventDefault();
+              editor.chain().focus().toggleHeading({ level: 2 }).run();
+            }}
+            className={
+              editor.isActive('heading', { level: 2 })
+                ? 'bg-secondary text-fourth p-1 border border-fourth'
+                : 'text-secondary p-1 border border-secondary hover:bg-secondary hover:text-fourth'
+            }
+          >
+            <FaHeading className='w-4 h-4' />
+          </button>
+          <button
+            onClick={e => {
+              e.preventDefault();
+              editor.chain().focus().toggleHeading({ level: 1 }).run();
+            }}
+            className={
+              editor.isActive('heading', { level: 1 })
+                ? 'bg-secondary text-fourth p-1 border border-fourth rounded-tr-md rounded-br-md'
+                : 'text-secondary p-1 border border-secondary rounded-tr-md rounded-br-md hover:bg-secondary hover:text-fourth'
+            }
+          >
+            <FaHeading className='w-5 h-5' />
           </button>
         </div>
         <div className='flex items-center justify-between'>
@@ -66,7 +105,7 @@ function Toolbar({ editor, content }: ToolbarProps) {
                 : 'text-secondary p-1 border border-secondary hover:bg-secondary hover:text-fourth rounded-tl-md rounded-bl-md'
             }
           >
-            <Bold className='w-5 h-5' />
+            <FaBold className='w-5 h-5' />
           </button>
           <button
             onClick={e => {
@@ -79,7 +118,7 @@ function Toolbar({ editor, content }: ToolbarProps) {
                 : 'text-secondary p-1 border border-secondary hover:bg-secondary hover:text-fourth'
             }
           >
-            <Italic className='w-5 h-5' />
+            <FaItalic className='w-5 h-5' />
           </button>
           <button
             onClick={e => {
@@ -92,7 +131,7 @@ function Toolbar({ editor, content }: ToolbarProps) {
                 : 'text-secondary p-1 border border-secondary hover:bg-secondary hover:text-fourth'
             }
           >
-            <Underline className='w-5 h-5' />
+            <FaUnderline className='w-5 h-5' />
           </button>
           <button
             onClick={e => {
@@ -105,50 +144,10 @@ function Toolbar({ editor, content }: ToolbarProps) {
                 : 'text-secondary p-1 border border-secondary rounded-tr-md rounded-br-md hover:bg-secondary hover:text-fourth'
             }
           >
-            <Strikethrough className='w-5 h-5' />
+            <FaStrikethrough className='w-5 h-5' />
           </button>
         </div>
-        <div className='flex items-center justify-between'>
-          <button
-            onClick={e => {
-              e.preventDefault();
-              editor.chain().focus().toggleHeading({ level: 1 }).run();
-            }}
-            className={
-              editor.isActive('heading', { level: 1 })
-                ? 'bg-secondary text-fourth p-1 border border-fourth rounded-tl-md rounded-bl-md'
-                : 'text-secondary p-1 border border-secondary hover:bg-secondary hover:text-fourth rounded-tl-md rounded-bl-md'
-            }
-          >
-            <Heading1 className='w-5 h-5' />
-          </button>
-          <button
-            onClick={e => {
-              e.preventDefault();
-              editor.chain().focus().toggleHeading({ level: 2 }).run();
-            }}
-            className={
-              editor.isActive('heading', { level: 2 })
-                ? 'bg-secondary text-fourth p-1 border border-fourth'
-                : 'text-secondary p-1 border border-secondary hover:bg-secondary hover:text-fourth'
-            }
-          >
-            <Heading2 className='w-5 h-5' />
-          </button>
-          <button
-            onClick={e => {
-              e.preventDefault();
-              editor.chain().focus().toggleHeading({ level: 3 }).run();
-            }}
-            className={
-              editor.isActive('heading', { level: 3 })
-                ? 'bg-secondary text-fourth p-1 border border-fourth rounded-tr-md rounded-br-md'
-                : 'text-secondary p-1 border border-secondary rounded-tr-md rounded-br-md hover:bg-secondary hover:text-fourth'
-            }
-          >
-            <Heading3 className='w-5 h-5' />
-          </button>
-        </div>
+
         <div className='flex items-center justify-between'>
           <button
             onClick={e => {
@@ -161,7 +160,7 @@ function Toolbar({ editor, content }: ToolbarProps) {
                 : 'text-secondary p-1 border border-secondary hover:bg-secondary hover:text-fourth rounded-tl-md rounded-bl-md'
             }
           >
-            <List className='w-5 h-5' />
+            <FaListUl className='w-5 h-5' />
           </button>
           <button
             onClick={e => {
@@ -174,7 +173,7 @@ function Toolbar({ editor, content }: ToolbarProps) {
                 : 'text-secondary p-1 border border-secondary rounded-tr-md rounded-br-md hover:bg-secondary hover:text-fourth'
             }
           >
-            <ListOrdered className='w-5 h-5' />
+            <FaListOl className='w-5 h-5' />
           </button>
         </div>
         <div className='flex items-center justify-between'>
@@ -189,7 +188,7 @@ function Toolbar({ editor, content }: ToolbarProps) {
                 : 'text-secondary p-1 border border-secondary rounded-tl-md rounded-bl-md hover:bg-secondary hover:text-fourth'
             }
           >
-            <Code className='w-5 h-5' />
+            <FaCode className='w-5 h-5' />
           </button>
           <button
             onClick={e => {
@@ -202,7 +201,29 @@ function Toolbar({ editor, content }: ToolbarProps) {
                 : 'text-secondary p-1 border border-secondary hover:bg-secondary hover:text-fourth rounded-tr-md rounded-br-md'
             }
           >
-            <Quote className='w-5 h-5' />
+            <FaQuoteRight className='w-5 h-5' />
+          </button>
+        </div>
+        <div className='flex items-center justify-between'>
+          <button
+            onClick={e => {
+              e.preventDefault();
+              const url = prompt('Enter YouTube URL');
+              if (url) {
+                editor.commands.setYoutubeVideo({
+                  src: url,
+                  width: 320,
+                  height: 240,
+                });
+              }
+            }}
+            className={
+              editor.isActive('blockquote')
+                ? 'bg-secondary text-fourth p-1 border border-fourth'
+                : 'text-secondary p-1 border border-secondary hover:bg-secondary hover:text-fourth'
+            }
+          >
+            <FaYoutube className='w-5 h-5' />
           </button>
         </div>
       </div>
