@@ -18,7 +18,7 @@ const Notes = () => {
   }, []);
 
   return (
-    <div className='max-w-6xl mx-auto px-5 grid grid-cols-1 lg:gird-cols-2 sm:grid-cols-3 gap-4'>
+    <div className='max-w-full w-full mx-auto grid grid-cols-1 mt-10 gap-10'>
       {data.map((item: DataItem, idx: number) => (
         <div key={idx}>
           <div

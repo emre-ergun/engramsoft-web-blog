@@ -102,10 +102,28 @@
       border-left: 3px solid gray;
       margin: 1.5rem 0;
     }
+
     .ProseMirror hr {
       border: none;
       border-top: 1px solid gray;
+      cursor: pointer;
       margin: 2rem 0;
+    }
+
+    /* TODO: hover will be changed to selection */
+    .ProseMirror hr:hover {
+      border-top: 2px solid purple;
+    }
+
+    .ProseMirror a {
+      color: blue;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .ProseMirror a:hover {
+      background: lightblue;
+      color: white;
     }
   }
 }
