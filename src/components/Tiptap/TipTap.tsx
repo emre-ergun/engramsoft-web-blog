@@ -123,7 +123,7 @@ function TipTap({ content, onChange }: TipTapProps) {
       }),
       Image.configure({
         // allowBase64: true,
-        inline: true,
+        inline: false,
       }),
       Youtube.configure({
         inline: false,
