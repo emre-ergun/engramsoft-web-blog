@@ -298,11 +298,15 @@ function Toolbar({ editor, content }: ToolbarProps) {
             onClick={e => {
               e.preventDefault();
               const previousUrl = editor.getAttributes('link').href;
-              const url = window.prompt('URL', previousUrl);
+              let url = window.prompt('URL', previousUrl);
 
               // cancelled
               if (url === null) {
                 return;
+              }
+
+              if (!url.startsWith('http') && !url.includes(':')) {
+                url = `https://${url}`;
               }
 
               // empty
