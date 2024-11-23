@@ -110,11 +110,6 @@
       margin: 2rem 0;
     }
 
-    /* TODO: hover will be changed to selection */
-    .ProseMirror hr:hover {
-      border-top: 2px solid purple;
-    }
-
     .ProseMirror a {
       color: blue;
       cursor: pointer;
@@ -124,6 +119,16 @@
     .ProseMirror a:hover {
       background: lightblue;
       color: white;
+    }
+
+    .ProseMirror img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+    }
+    .ProseMirror .ProseMirror-selectednode {
+      outline: 2px solid blueviolet;
     }
   }
 }

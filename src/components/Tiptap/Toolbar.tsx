@@ -12,6 +12,7 @@ import {
   FaLink,
   FaLinkSlash,
   FaYoutube,
+  FaImage,
 } from 'react-icons/fa6';
 import { FaUndo, FaRedo } from 'react-icons/fa';
 import { BiCodeBlock } from 'react-icons/bi';
@@ -22,6 +23,7 @@ import {
   GrTextAlignCenter,
   GrTextAlignRight,
 } from 'react-icons/gr';
+import { useRef } from 'react';
 
 type ToolbarProps = {
   editor: Editor | null;
@@ -29,6 +31,7 @@ type ToolbarProps = {
 };
 
 function Toolbar({ editor, content }: ToolbarProps) {
+  const inputRef = useRef<HTMLInputElement>(null);
   if (!editor) return null;
 
   return (
@@ -349,6 +352,56 @@ function Toolbar({ editor, content }: ToolbarProps) {
             }
           >
             <FaLinkSlash className='w-5 h-5' />
+          </button>
+          <input
+            ref={inputRef}
+            id='fileInput'
+            type='file'
+            accept='image/*'
+            onChange={event => {
+              const file = event.target.files?.[0];
+              console.log(file);
+              if (file) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                  console.log(e);
+                  const result = e.target?.result as string;
+                  const base64Data = result.split(',')[1];
+                  const newBase64Image = `data:${file.type};base64,${base64Data}`;
+                  const img = new Image();
+                  img.onload = () => {
+                    // const aspectRatio = img.width / img.height;
+                    // img.width = 100;
+                    // img.height = 100 * aspectRatio;
+                    // console.log(aspectRatio);
+                    editor
+                      .chain()
+                      .focus()
+                      .setImage({
+                        src: newBase64Image,
+                        alt: file.name.split('.')[0],
+                      })
+                      .run();
+                  };
+                  img.src = newBase64Image;
+                };
+                reader.readAsDataURL(file);
+              }
+            }}
+            className='hidden'
+          />
+          <button
+            onClick={e => {
+              e.preventDefault();
+              inputRef.current?.click();
+            }}
+            className={
+              editor.isActive('image')
+                ? 'bg-secondary text-fourth p-1 border border-fourth'
+                : 'text-secondary p-1 border border-secondary hover:bg-secondary hover:text-fourth'
+            }
+          >
+            <FaImage className='w-5 h-5' />
           </button>
           <button
             onClick={e => {

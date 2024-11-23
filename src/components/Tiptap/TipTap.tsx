@@ -18,6 +18,7 @@ import HardBreak from '@tiptap/extension-hard-break';
 import HorizontalRule from '@tiptap/extension-horizontal-rule';
 import Blockquote from '@tiptap/extension-blockquote';
 import Link from '@tiptap/extension-link';
+import Image from '@tiptap/extension-image';
 import Youtube from '@tiptap/extension-youtube';
 import Toolbar, { BubbleToolbar } from '@/src/components/Tiptap/Toolbar';
 
@@ -64,12 +65,10 @@ function TipTap({ content, onChange }: TipTapProps) {
             const parsedUrl = url.includes(':')
               ? new URL(url)
               : new URL(`${ctx.defaultProtocol}://${url}`);
-
             // use default validation
             if (!ctx.defaultValidate(parsedUrl.href)) {
               return false;
             }
-
             // disallowed protocols
             const disallowedProtocols = ['ftp', 'file', 'mailto'];
             const protocol = parsedUrl.protocol.replace(':', '');
@@ -77,7 +76,6 @@ function TipTap({ content, onChange }: TipTapProps) {
             if (disallowedProtocols.includes(protocol)) {
               return false;
             }
-
             // only allow protocols specified in ctx.protocols
             const allowedProtocols = ctx.protocols.map(p =>
               typeof p === 'string' ? p : p.scheme
@@ -86,7 +84,6 @@ function TipTap({ content, onChange }: TipTapProps) {
             if (!allowedProtocols.includes(protocol)) {
               return false;
             }
-
             // disallowed domains
             const disallowedDomains = [
               'example-phishing.com',
@@ -97,7 +94,6 @@ function TipTap({ content, onChange }: TipTapProps) {
             if (disallowedDomains.includes(domain)) {
               return false;
             }
-
             // all checks have passed
             return true;
           } catch (error) {
@@ -111,7 +107,6 @@ function TipTap({ content, onChange }: TipTapProps) {
             const parsedUrl = url.includes(':')
               ? new URL(url)
               : new URL(`https://${url}`);
-
             // only auto-link if the domain is not in the disallowed list
             const disallowedDomains = [
               'example-no-autolink.com',
@@ -125,6 +120,10 @@ function TipTap({ content, onChange }: TipTapProps) {
             return false;
           }
         },
+      }),
+      Image.configure({
+        // allowBase64: true,
+        inline: true,
       }),
       Youtube.configure({
         inline: false,

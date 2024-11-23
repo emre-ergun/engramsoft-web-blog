@@ -54,7 +54,7 @@ function PostEditor() {
           id='file'
           name='file'
           required
-          accept='image/png, image/gif, image/jpeg'
+          accept='image/*'
           className='bg-white border border-secondary focus:outline-secondary col-span-3 flex items-center'
         />
       </div>
