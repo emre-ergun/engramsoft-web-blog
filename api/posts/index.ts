@@ -16,7 +16,7 @@ export const usePostLists = () => {
 
 export const usePost = (id: number) => {
   return useQuery({
-    queryKey: ['post', id],
+    queryKey: ['posts', id],
     queryFn: async () => {
       const { data, error } = await supabase
         .from('posts')
