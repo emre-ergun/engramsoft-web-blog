@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.46.1",
+    "@tanstack/react-query": "^5.61.3",
     "@tiptap/extension-blockquote": "^2.10.1",
     "@tiptap/extension-bold": "^2.10.1",
     "@tiptap/extension-bullet-list": "^2.10.1",

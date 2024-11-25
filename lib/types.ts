@@ -6,5 +6,6 @@ export type Post = {
   content: string;
   keywords: string[];
   author: string;
-  timestamp: string;
+  cover_image?: string;
+  created_at: string;
 };

@@ -1,29 +1,24 @@
-import { mockPostCards } from '@/lib/mockData';
 import PostCard from '../components/PostCard';
-import { BsArrowRight } from 'react-icons/bs';
 import { CiSearch } from 'react-icons/ci';
-import { GoDash } from 'react-icons/go';
-import { useState } from 'react';
-import { Post } from '@/lib/types';
 import Qoute from '@/src/components/Qoute';
+import MainLoading from '@/src/components/MainLoading';
+import { usePostLists } from '@/api/posts';
 
 function Home() {
-  const [postCards, setPostcards] = useState<Post[]>(mockPostCards.slice(0, 7));
-  const [allLoaded, setAllLoaded] = useState(false);
+  const { data: posts, error, isLoading } = usePostLists();
 
-  const loadMoreHandle = () => {
-    const currentLength = postCards.length;
-    if (currentLength >= mockPostCards.length) {
-      setAllLoaded(true);
-      return;
-    }
-    const additionalPosts = mockPostCards.slice(
-      currentLength,
-      currentLength + 5
+  if (isLoading)
+    return (
+      <div className='h-[calc(100vh-48px)] w-full flex flex-col gap-4 items-center justify-center mt-10'>
+        <MainLoading />
+      </div>
     );
-    setPostcards([...postCards, ...additionalPosts]);
-  };
-
+  if (error)
+    return (
+      <div className='h-[calc(100vh-48px)] w-full flex flex-col gap-4 justify-center items-center mt-10'>
+        <h1>Failed to fetch posts</h1>
+      </div>
+    );
   return (
     <div className='min-h-[calc(100vh-48px)] w-full flex flex-col gap-4 justify-center mt-10'>
       <Qoute />
@@ -54,14 +49,14 @@ function Home() {
         </form>
       </div>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8'>
-        {postCards.map(post => (
+        {posts?.map(post => (
           <div key={post.id} className='min-h-[400px]'>
             <PostCard {...post} />
           </div>
         ))}
       </div>
       <div className='flex items-center justify-center mt-6 '>
-        <button
+        {/* <button
           onClick={loadMoreHandle}
           className='group flex items-center justify-center gap-1 cursor-pointer'
           disabled={allLoaded}
@@ -75,7 +70,7 @@ function Home() {
           ) : (
             <BsArrowRight className='text-lg group-hover:translate-x-1 group-hover:rotate-90 transition-all duration-300' />
           )}
-        </button>
+        </button> */}
       </div>
     </div>
   );

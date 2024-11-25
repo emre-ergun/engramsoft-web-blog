@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import MainLoading from './MainLoading';
 
 const url = 'https://quotes15.p.rapidapi.com/quotes/random/?language_code=en';
 const options = {
@@ -46,7 +47,7 @@ function Qoute() {
   return (
     <div className='relative mt-10 flex items-center justify-center'>
       {data.content === '' ? (
-        <div className='h-5 w-5 animate-spin rounded-full border-b-2 border-secondary'></div>
+        <MainLoading />
       ) : (
         <p className='text-2xl sm:text-3xl text-center'>"{data.content}"</p>
       )}

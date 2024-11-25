@@ -9,25 +9,32 @@ import AuthLayout from '@/src/layouts/AuthLayout';
 import Profile from '@/src/pages/Profile';
 import AuthProvider from '@/context/AuthContext';
 import NewPost from '@/src/pages/NewPost';
+import QueryProvider from '@/context/QueryProvider';
+import Post from '@/src/pages/Post';
 
 function App() {
   return (
     <AuthProvider>
-      <Router future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
-        <Routes>
-          <Route path='/' element={<MainLayout />}>
-            <Route index element={<Home />} />
-            <Route path='new-post' element={<NewPost />} />
-            <Route path='about' element={<About />} />
-          </Route>
-          <Route path='/' element={<AuthLayout />}>
-            <Route path='sign-in' element={<SignIn />} />
-            <Route path='sign-up' element={<SignUp />} />
-            <Route path='profile' element={<Profile />} />
-          </Route>
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-      </Router>
+      <QueryProvider>
+        <Router
+          future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
+        >
+          <Routes>
+            <Route path='/' element={<MainLayout />}>
+              <Route index element={<Home />} />
+              <Route path='new-post' element={<NewPost />} />
+              <Route path='post/:id' element={<Post />} />
+              <Route path='about' element={<About />} />
+            </Route>
+            <Route path='/' element={<AuthLayout />}>
+              <Route path='sign-in' element={<SignIn />} />
+              <Route path='sign-up' element={<SignUp />} />
+              <Route path='profile' element={<Profile />} />
+            </Route>
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </Router>
+      </QueryProvider>
     </AuthProvider>
   );
 }
