@@ -8,7 +8,9 @@ import { Tooltip } from 'react-tooltip';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { session } = useAuth();
+  const { session, isAdmin, loading } = useAuth();
+
+  if (loading) return;
 
   return (
     <div className='w-full flex justify-between items-center min-h-[48px]'>
@@ -36,20 +38,24 @@ function Header() {
           </NavLink>
           {session ? (
             <>
-              <NavLink
-                to={'/new-post'}
-                className={({ isActive }) =>
-                  isActive
-                    ? 'text-secondary'
-                    : 'text-primary hover:text-secondary'
-                }
-              >
-                New Post
-              </NavLink>
+              {isAdmin ? (
+                <NavLink
+                  to={'/new-post'}
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'text-secondary'
+                      : 'text-primary hover:text-secondary'
+                  }
+                >
+                  New Post
+                </NavLink>
+              ) : (
+                ''
+              )}
               <Tooltip id='my-tooltip' />
               <NavLink
                 data-tooltip-id='my-tooltip'
-                data-tooltip-content={session.user.user_metadata.email}
+                data-tooltip-content={session?.user.user_metadata.email}
                 to={'/profile'}
                 className='text-2xl flex items-center justify-center border border-primary rounded-full'
               >
@@ -86,20 +92,24 @@ function Header() {
                     to={'/profile'}
                     className='flex items-center justify-center hover:text-secondary'
                   >
-                    {session.user.user_metadata.email
+                    {session?.user.user_metadata.email
                       .split('@')[0]
                       .toUpperCase()}
                   </NavLink>
-                  <NavLink
-                    to={'/new-post'}
-                    className={({ isActive }) =>
-                      isActive
-                        ? 'text-secondary'
-                        : 'text-primary hover:text-secondary'
-                    }
-                  >
-                    New Post
-                  </NavLink>
+                  {isAdmin ? (
+                    <NavLink
+                      to={'/new-post'}
+                      className={({ isActive }) =>
+                        isActive
+                          ? 'text-secondary'
+                          : 'text-primary hover:text-secondary'
+                      }
+                    >
+                      New Post
+                    </NavLink>
+                  ) : (
+                    ''
+                  )}
                 </>
               ) : (
                 <NavLink

@@ -360,11 +360,9 @@ function Toolbar({ editor, content }: ToolbarProps) {
             accept='image/*'
             onChange={event => {
               const file = event.target.files?.[0];
-              console.log(file);
               if (file) {
                 const reader = new FileReader();
                 reader.onload = e => {
-                  console.log(e);
                   const result = e.target?.result as string;
                   const base64Data = result.split(',')[1];
                   const newBase64Image = `data:${file.type};base64,${base64Data}`;

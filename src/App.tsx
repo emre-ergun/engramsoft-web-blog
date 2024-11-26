@@ -5,7 +5,6 @@ import About from '@/src/pages/About';
 import NotFound from '@/src/pages/NotFound';
 import SignIn from '@/src/pages/SignIn';
 import SignUp from '@/src/pages/SignUp';
-import AuthLayout from '@/src/layouts/AuthLayout';
 import Profile from '@/src/pages/Profile';
 import AuthProvider from '@/context/AuthContext';
 import NewPost from '@/src/pages/NewPost';
@@ -25,13 +24,11 @@ function App() {
               <Route path='new-post' element={<NewPost />} />
               <Route path='post/:id' element={<Post />} />
               <Route path='about' element={<About />} />
-            </Route>
-            <Route path='/' element={<AuthLayout />}>
               <Route path='sign-in' element={<SignIn />} />
               <Route path='sign-up' element={<SignUp />} />
               <Route path='profile' element={<Profile />} />
+              <Route path='*' element={<NotFound />} />
             </Route>
-            <Route path='*' element={<NotFound />} />
           </Routes>
         </Router>
       </QueryProvider>

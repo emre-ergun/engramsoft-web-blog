@@ -44,15 +44,14 @@ export default function AuthProvider({ children }: PropsWithChildren) {
       } = await supabase.auth.getSession();
       setSession(session);
 
-      if (session) {
-        const { data } = await supabase
-          .from('profiles')
-          .select('*')
-          .eq('id', session.user.id)
-          .single();
-
-        setProfile(data || null);
-      }
+      // if (session) {
+      //   const { data } = await supabase
+      //     .from('profiles')
+      //     .select('*')
+      //     .eq('id', session.user.id)
+      //     .single();
+      //   setProfile(data || null);
+      // }
 
       setLoading(false);
     };
@@ -62,6 +61,23 @@ export default function AuthProvider({ children }: PropsWithChildren) {
       setSession(session);
     });
   }, []);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      if (session) {
+        setLoading(true);
+        const { data } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', session.user.id)
+          .single();
+        setProfile(data || null);
+        console.log(data);
+      }
+      setLoading(false);
+    };
+    fetchProfile();
+  }, [session]);
   return (
     <AuthContext.Provider
       value={{ session, loading, profile, isAdmin: profile?.group === 'ADMIN' }}

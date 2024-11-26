@@ -51,7 +51,15 @@ function Home() {
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8'>
         {posts?.map(post => (
           <div key={post.id} className='min-h-[400px]'>
-            <PostCard {...post} />
+            <PostCard
+              id={post.id}
+              title={post.title}
+              description={post.description}
+              keywords={post.keywords}
+              author={post.author}
+              cover_image={post.cover_image}
+              created_at={post.created_at}
+            />
           </div>
         ))}
       </div>

@@ -4,13 +4,13 @@ import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 
 function SignUp() {
-  const [loading, setLoading] = useState(false);
+  const [loadingSignUp, setLoadingSignUp] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '' });
-  const { session } = useAuth();
+  const { session, loading } = useAuth();
 
   async function signUpWithEmail(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setLoading(true);
+    setLoadingSignUp(true);
     const { error } = await supabase.auth.signUp({
       email: formData.email,
       password: formData.password,
@@ -19,9 +19,9 @@ function SignUp() {
     if (error) {
       alert(error.message);
     }
-    setLoading(false);
+    setLoadingSignUp(false);
   }
-
+  if (loading) return;
   if (session) return <Navigate replace to='/' />;
 
   return (
@@ -59,9 +59,9 @@ function SignUp() {
         <button
           type='submit'
           className='flex items-center justify-center gap-2 h-[2rem] w-full bg-secondary text-fourth outline-none transition-all focus:scale-110 hover:scale-110 hover:bg-third active:scale-105 disabled:scale-100 disabled:bg-opacity-65'
-          disabled={loading}
+          disabled={loadingSignUp}
         >
-          {loading ? (
+          {loadingSignUp ? (
             <div className='h-5 w-5 animate-spin rounded-full border-b-2 border-white'></div>
           ) : (
             <>Sign Up</>

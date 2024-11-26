@@ -12,7 +12,7 @@ const Notes = () => {
     const existingDataString = localStorage.getItem('myData');
     if (existingDataString) {
       const existingData = JSON.parse(existingDataString);
-      console.log(existingData);
+      // console.log(existingData);
       setData(existingData);
     }
   }, []);

@@ -20,7 +20,7 @@
 
     .ProseMirror {
       padding: 10px;
-      background: white;
+      background: transparent;
       min-height: 200px;
       overflow: hidden;
       word-break: break-word;

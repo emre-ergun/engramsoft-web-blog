@@ -4,13 +4,13 @@ import { Navigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 
 function SignIn() {
-  const [loading, setLoading] = useState(false);
+  const [loadingSignIn, setLoadingSignIn] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '' });
-  const { session } = useAuth();
+  const { session, loading } = useAuth();
 
   async function signInWithPassword(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setLoading(true);
+    setLoadingSignIn(true);
     const { error } = await supabase.auth.signInWithPassword({
       email: formData.email,
       password: formData.password,
@@ -20,9 +20,10 @@ function SignIn() {
       alert(error.message);
     }
 
-    setLoading(false);
+    setLoadingSignIn(false);
   }
-  if (session) return <Navigate replace to='/' />;
+  if (loading) return;
+  if (session) return <Navigate replace to='/'/>;
 
   return (
     <div className='h-[calc(100vh-128px)] w-full flex flex-col items-center justify-center'>
@@ -59,9 +60,9 @@ function SignIn() {
         <button
           type='submit'
           className='flex items-center justify-center gap-2 h-[2rem] w-full bg-secondary text-fourth outline-none transition-all focus:scale-110 hover:scale-110 hover:bg-third active:scale-105 disabled:scale-100 disabled:bg-opacity-65'
-          disabled={loading}
+          disabled={loadingSignIn}
         >
-          {loading ? (
+          {loadingSignIn ? (
             <div className='h-5 w-5 animate-spin rounded-full border-b-2 border-white'></div>
           ) : (
             <>Sign In</>

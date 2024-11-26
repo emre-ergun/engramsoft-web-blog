@@ -133,8 +133,7 @@ function TipTap({ content, onChange }: TipTapProps) {
     editorProps: {
       attributes: {
         spellcheck: 'false',
-        class:
-          'prose prose-sm sm:prose-base lg:prose-lg xl:prose-2xl border border-secondary outline-none',
+        class: 'border border-secondary outline-none',
       },
     },
     onUpdate: ({ editor }) => {
@@ -143,14 +142,16 @@ function TipTap({ content, onChange }: TipTapProps) {
   });
 
   return (
-    <div className='relative w-full'>
+    <div className='relative w-full prose'>
       <div className='sticky top-24 left-0 w-full mx-auto z-10 bg-fourth bg-opacity-70 backdrop-blur-[0.5rem]'>
         <Toolbar editor={editor} content={content} />
       </div>
       <BubbleMenu editor={editor}>
         <BubbleToolbar editor={editor} />
       </BubbleMenu>
-      <EditorContent editor={editor} />
+      <div className='bg-white'>
+        <EditorContent editor={editor} />
+      </div>
     </div>
   );
 }
