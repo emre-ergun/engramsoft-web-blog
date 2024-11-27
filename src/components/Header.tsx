@@ -8,7 +8,7 @@ import { Tooltip } from 'react-tooltip';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { session, isAdmin, loading } = useAuth();
+  const { session, loading } = useAuth();
 
   if (loading) return;
 
