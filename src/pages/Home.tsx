@@ -59,6 +59,7 @@ function Home() {
               author={post.author}
               cover_image={post.cover_image}
               created_at={post.created_at}
+              ai_generated={post.ai_generated}
             />
           </div>
         ))}

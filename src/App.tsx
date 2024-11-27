@@ -1,11 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import MainLayout from '@/src/layouts/MainLayout';
 import Home from '@/src/pages/Home';
-import About from '@/src/pages/About';
 import NotFound from '@/src/pages/NotFound';
 import SignIn from '@/src/pages/SignIn';
 import SignUp from '@/src/pages/SignUp';
-import Profile from '@/src/pages/Profile';
 import AuthProvider from '@/context/AuthContext';
 import QueryProvider from '@/context/QueryProvider';
 import Post from '@/src/pages/Post';
@@ -23,10 +21,8 @@ function App() {
               <Route index element={<Home />} />
               <Route path='edit' element={<PostEditor />} />
               <Route path='post/:id' element={<Post />} />
-              <Route path='about' element={<About />} />
               <Route path='sign-in' element={<SignIn />} />
               <Route path='sign-up' element={<SignUp />} />
-              <Route path='profile' element={<Profile />} />
               <Route path='*' element={<NotFound />} />
             </Route>
           </Routes>

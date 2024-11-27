@@ -13,6 +13,7 @@ function PostCard({
   cover_image,
   created_at,
   description,
+  ai_generated,
 }: PostCardProps) {
   const newDate = new Date(created_at).toLocaleDateString();
 
@@ -25,7 +26,7 @@ function PostCard({
               ? cover_image
               : `https://picsum.photos/1920/1080.webp?t=${id}`
           }
-          className='object-cover h-full w-full group-hover:blur-sm transition-all duration-500'
+          className='object-cover h-full w-full blur-0 group-hover:blur-[1px] transition-all duration-500'
         ></img>
       </div>
       <div className='absolute bottom-0 left-0 w-full h-1/3 bg-secondary opacity-70 group-hover:opacity-90 group-hover:scale-x-[1.05] group-hover:scale-y-[1.15] transition-all duration-500'></div>
@@ -39,7 +40,13 @@ function PostCard({
           <p>by {author}</p>
           <p>on {newDate}</p>
         </div>
-
+        {ai_generated && (
+          <div className='absolute top-2 left-2'>
+            <p className='bg-secondary text-fourth px-2 py-1 text-xs'>
+              ai_generated
+            </p>
+          </div>
+        )}
         <ul className='absolute hidden flex-col items-end top-2 right-2 z-10 gap-2 sm:group-hover:flex'>
           {keywords.map((keyword, idx) => (
             <li

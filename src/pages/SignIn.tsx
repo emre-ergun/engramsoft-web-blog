@@ -23,7 +23,7 @@ function SignIn() {
     setLoadingSignIn(false);
   }
   if (loading) return;
-  if (session) return <Navigate replace to='/'/>;
+  if (session) return <Navigate replace to='/' />;
 
   return (
     <div className='h-[calc(100vh-128px)] w-full flex flex-col items-center justify-center'>

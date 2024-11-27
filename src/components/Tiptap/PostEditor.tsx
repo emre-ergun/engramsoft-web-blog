@@ -13,6 +13,7 @@ function PostEditor() {
   const [keywords, setKeywords] = useState('');
   const [coverImage, setCoverImage] = useState('');
   const [description, setDescription] = useState('');
+  const [isAiGenerated, setIsAiGenerated] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isPreview, setIsPreview] = useState(false);
   const { mutate: insertPost } = useInsertPost();
@@ -33,6 +34,7 @@ function PostEditor() {
         .slice(0, 4),
       cover_image: coverImage,
       author: profile.username,
+      ai_generated: isAiGenerated,
     };
     insertPost(newPost, {
       onSuccess: () => {
@@ -62,10 +64,10 @@ function PostEditor() {
         onSubmit={isAdmin ? onCreate : onPreview}
         className='max-w-full flex flex-col mx-auto pt-10 mb-10'
       >
-        <div className='w-full sm:w-1/2 my-5 grid grid-cols-4 gap-2 '>
+        <div className='w-full sm:w-1/2 my-5 grid grid-cols-8 gap-2'>
           <label
             htmlFor='Author'
-            className='col-span-1 flex items-center text-nowrap'
+            className='col-span-2 flex items-center text-nowrap'
           >
             Author
           </label>
@@ -77,11 +79,12 @@ function PostEditor() {
             value={profile?.username || 'Guest'}
             placeholder='Author'
             disabled
-            className='pl-2 py-1 bg-white border border-secondary focus:outline-secondary col-span-3 flex items-center'
+            className='pl-2 py-1 bg-white border border-secondary focus:outline-secondary col-span-6 flex items-center'
           />
+
           <label
             htmlFor='header'
-            className='col-span-1 flex items-center text-nowrap'
+            className='col-span-2 flex items-center text-nowrap'
           >
             Header
           </label>
@@ -94,11 +97,11 @@ function PostEditor() {
             placeholder='Header'
             onChange={e => setTitle(e.target.value)}
             required
-            className='pl-2 py-1 bg-white border border-secondary focus:outline-secondary col-span-3 flex items-center'
+            className='pl-2 py-1 bg-white border border-secondary focus:outline-secondary col-span-6 flex items-center'
           />
           <label
             htmlFor='description'
-            className='col-span-1 flex items-center text-nowrap'
+            className='col-span-2 flex items-center text-nowrap'
           >
             Description
           </label>
@@ -111,11 +114,11 @@ function PostEditor() {
             placeholder='Description'
             onChange={e => setDescription(e.target.value)}
             required
-            className='pl-2 py-1 bg-white border border-secondary focus:outline-secondary col-span-3 flex items-center'
+            className='pl-2 py-1 bg-white border border-secondary focus:outline-secondary col-span-6 flex items-center'
           />
           <label
             htmlFor='keyword'
-            className='col-span-1 flex items-center text-nowrap'
+            className='col-span-2 flex items-center text-nowrap'
           >
             Keywords
           </label>
@@ -128,11 +131,11 @@ function PostEditor() {
             placeholder='Comma separated keywords up to 4'
             onChange={e => setKeywords(e.target.value)}
             required
-            className='pl-2 py-1 bg-white border border-secondary focus:outline-secondary col-span-3 flex items-center'
+            className='pl-2 py-1 bg-white border border-secondary focus:outline-secondary col-span-6 flex items-center'
           />
           <label
             htmlFor='file'
-            className='col-span-1 flex items-center text-nowrap'
+            className='col-span-2 flex items-center text-nowrap'
           >
             Cover Image
           </label>
@@ -158,15 +161,30 @@ function PostEditor() {
                 reader.readAsDataURL(file);
               }
             }}
-            className='bg-white border border-secondary focus:outline-secondary col-span-3 flex items-center'
+            className='bg-white border border-secondary focus:outline-secondary col-span-4 flex items-center'
+          />
+          <label
+            htmlFor='ai_generated'
+            className='col-span-1 flex items-center text-nowrap justify-end'
+          >
+            AI
+          </label>
+          <input
+            type='checkbox'
+            id='ai_generated'
+            name='ai_generated'
+            checked={isAiGenerated}
+            onChange={e => setIsAiGenerated(e.target.checked)}
+            className='w-6 accent-secondary col-span-1 hover:accent-primary border border-secondary justify-self-end'
           />
           <button
             type='submit'
-            className='flex h-[3rem] items-center justify-center font-bold border bg-secondary text-fourth col-span-4 hover:bg-primary hover:text-fourth'
+            className='flex h-[3rem] items-center justify-center font-bold border bg-secondary text-primary col-span-8 hover:bg-primary hover:text-fourth'
           >
             {isAdmin ? 'Create' : 'Preview'}
           </button>
         </div>
+
         <TipTap
           content={content}
           onChange={(newContent: string) => handleContentChange(newContent)}

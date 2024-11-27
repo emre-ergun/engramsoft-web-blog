@@ -8,4 +8,5 @@ export type Post = {
   cover_image?: string;
   created_at: string;
   description: string;
+  ai_generated: boolean;
 };

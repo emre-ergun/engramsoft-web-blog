@@ -60,6 +60,7 @@ export const useInsertPost = () => {
       keywords: string[];
       cover_image: string;
       author: string;
+      ai_generated: boolean;
     }) => {
       const { data: newPost, error } = await supabase
         .from('posts')
@@ -71,6 +72,7 @@ export const useInsertPost = () => {
           keywords: data.keywords,
           cover_image: data.cover_image,
           author: data.author,
+          ai_generated: data.ai_generated,
         })
         .single();
       if (error) {
@@ -98,6 +100,7 @@ export const useUpdatePost = () => {
       keywords: string[];
       cover_image: string;
       author: string;
+      ai_generated: boolean;
     }) => {
       const { data: updatedPost, error } = await supabase
         .from('posts')
@@ -109,6 +112,7 @@ export const useUpdatePost = () => {
           keywords: data.keywords,
           cover_image: data.cover_image,
           author: data.author,
+          ai_generated: data.ai_generated,
         })
         .eq('id', data.id)
         .select()

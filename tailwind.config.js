@@ -9,6 +9,15 @@ export default {
         third: '#393E46',
         fourth: '#EEEEEE',
       },
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-6deg)' },
+          '50%': { transform: 'rotate(6deg)' },
+        },
+      },
+      animation: {
+        wiggle: 'wiggle 0.4s ease-in-out infinite',
+      },
     },
   },
   plugins: [],
