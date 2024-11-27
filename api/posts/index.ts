@@ -1,11 +1,27 @@
 import { supabase } from '@/lib/supabase';
-import { useQuery, useMutation } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const usePostLists = () => {
   return useQuery({
     queryKey: ['posts'],
     queryFn: async () => {
       const { data, error } = await supabase.from('posts').select('*');
+      if (error) {
+        throw new Error(error.message);
+      }
+      return data;
+    },
+  });
+};
+
+export const usePostListsByKeyword = (keyword: string) => {
+  return useQuery({
+    queryKey: ['posts'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('posts')
+        .select('*')
+        .filter('keywords', 'cs', keyword);
       if (error) {
         throw new Error(error.message);
       }
@@ -32,6 +48,8 @@ export const usePost = (id: number) => {
 };
 
 export const useInsertPost = () => {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationKey: ['posts'],
     mutationFn: async (data: {
@@ -59,6 +77,64 @@ export const useInsertPost = () => {
         throw new Error(error.message);
       }
       return newPost;
+    },
+    async onSuccess() {
+      await queryClient.invalidateQueries({ queryKey: ['posts'] });
+    },
+  });
+};
+
+export const useUpdatePost = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationKey: ['posts'],
+    mutationFn: async (data: {
+      id: number;
+      profile_id: string;
+      title: string;
+      description: string;
+      content: string;
+      keywords: string[];
+      cover_image: string;
+      author: string;
+    }) => {
+      const { data: updatedPost, error } = await supabase
+        .from('posts')
+        .update({
+          profile_id: data.profile_id,
+          title: data.title,
+          description: data.description,
+          content: data.content,
+          keywords: data.keywords,
+          cover_image: data.cover_image,
+          author: data.author,
+        })
+        .eq('id', data.id)
+        .select()
+        .single();
+      if (error) {
+        throw new Error(error.message);
+      }
+      return updatedPost;
+    },
+    async onSuccess(_, { id }) {
+      await queryClient.invalidateQueries({ queryKey: ['posts'] });
+      await queryClient.invalidateQueries({ queryKey: ['posts', id] });
+    },
+  });
+};
+
+export const useDeletePost = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationKey: ['posts'],
+    mutationFn: async (id: number) => {
+      await supabase.from('posts').delete().eq('id', id);
+    },
+    async onSuccess() {
+      await queryClient.invalidateQueries({ queryKey: ['posts'] });
     },
   });
 };
