@@ -5,7 +5,7 @@ import NotFound from '@/src/pages/NotFound';
 import parse from 'html-react-parser';
 
 function Post() {
-  const { id: idString } = useParams()!;
+  const { id: idString } = useParams();
   const id = parseInt(idString!);
 
   const { data: post, error, isLoading } = usePost(id);
@@ -31,7 +31,10 @@ function Post() {
                 on {new Date(post.created_at).toLocaleDateString()}
               </p>
             </div>
-            <img src={post.cover_image} className='absolute top-0 left-0 -z-10 object-cover blur-sm' />
+            <img
+              src={post.cover_image}
+              className='absolute top-0 left-0 -z-10 object-cover blur-sm'
+            />
           </div>
           <div className='ProseMirror whitespace-pre-line px-6 py-4 bg-fourth'>
             {parse(post.content)}

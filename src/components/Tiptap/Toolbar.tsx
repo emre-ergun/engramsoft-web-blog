@@ -27,10 +27,9 @@ import { useRef } from 'react';
 
 type ToolbarProps = {
   editor: Editor | null;
-  content: string;
 };
 
-function Toolbar({ editor, content }: ToolbarProps) {
+function Toolbar({ editor }: ToolbarProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   if (!editor) return null;
 
@@ -423,14 +422,6 @@ function Toolbar({ editor, content }: ToolbarProps) {
           </button>
         </div>
       </div>
-      {content && (
-        <button
-          type='submit'
-          className='absolute -bottom-14 right-2 h-12 w-24 flex items-center justify-center border border-secondary text-secondary hover:bg-secondary hover:text-fourth px-1'
-        >
-          Create Post
-        </button>
-      )}
     </div>
   );
 }

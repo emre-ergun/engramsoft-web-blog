@@ -36,22 +36,16 @@ function Header() {
           >
             About
           </NavLink>
+          <NavLink
+            to={'/edit'}
+            className={({ isActive }) =>
+              isActive ? 'text-secondary' : 'text-primary hover:text-secondary'
+            }
+          >
+            New Post
+          </NavLink>
           {session ? (
             <>
-              {isAdmin ? (
-                <NavLink
-                  to={'/new-post'}
-                  className={({ isActive }) =>
-                    isActive
-                      ? 'text-secondary'
-                      : 'text-primary hover:text-secondary'
-                  }
-                >
-                  New Post
-                </NavLink>
-              ) : (
-                ''
-              )}
               <Tooltip id='my-tooltip' />
               <NavLink
                 data-tooltip-id='my-tooltip'
@@ -87,30 +81,14 @@ function Header() {
           {isMenuOpen && (
             <div className='absolute flex flex-col gap-4 py-6 px-6 border-2 border-primary top-[42px] right-0 text-center text-lg min-w-36 bg-fourth z-[99]'>
               {session ? (
-                <>
-                  <NavLink
-                    to={'/profile'}
-                    className='flex items-center justify-center hover:text-secondary'
-                  >
-                    {session?.user.user_metadata.email
-                      .split('@')[0]
-                      .toUpperCase()}
-                  </NavLink>
-                  {isAdmin ? (
-                    <NavLink
-                      to={'/new-post'}
-                      className={({ isActive }) =>
-                        isActive
-                          ? 'text-secondary'
-                          : 'text-primary hover:text-secondary'
-                      }
-                    >
-                      New Post
-                    </NavLink>
-                  ) : (
-                    ''
-                  )}
-                </>
+                <NavLink
+                  to={'/profile'}
+                  className='flex items-center justify-center hover:text-secondary'
+                >
+                  {session?.user.user_metadata.email
+                    .split('@')[0]
+                    .toUpperCase()}
+                </NavLink>
               ) : (
                 <NavLink
                   to={'/sign-in'}
@@ -132,6 +110,16 @@ function Header() {
                 }
               >
                 Home
+              </NavLink>
+              <NavLink
+                to={'/edit'}
+                className={({ isActive }) =>
+                  isActive
+                    ? 'text-secondary'
+                    : 'text-primary hover:text-secondary'
+                }
+              >
+                New Post
               </NavLink>
               <NavLink
                 to={'/about'}

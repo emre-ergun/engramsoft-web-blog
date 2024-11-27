@@ -7,9 +7,9 @@ import SignIn from '@/src/pages/SignIn';
 import SignUp from '@/src/pages/SignUp';
 import Profile from '@/src/pages/Profile';
 import AuthProvider from '@/context/AuthContext';
-import NewPost from '@/src/pages/NewPost';
 import QueryProvider from '@/context/QueryProvider';
 import Post from '@/src/pages/Post';
+import PostEditor from '@/src/components/Tiptap/PostEditor';
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
           <Routes>
             <Route path='/' element={<MainLayout />}>
               <Route index element={<Home />} />
-              <Route path='new-post' element={<NewPost />} />
+              <Route path='edit' element={<PostEditor />} />
               <Route path='post/:id' element={<Post />} />
               <Route path='about' element={<About />} />
               <Route path='sign-in' element={<SignIn />} />

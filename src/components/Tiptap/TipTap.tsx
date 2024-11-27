@@ -33,6 +33,7 @@ function TipTap({ content, onChange }: TipTapProps) {
   };
 
   const editor = useEditor({
+    content,
     extensions: [
       Document,
       Text,
@@ -144,7 +145,7 @@ function TipTap({ content, onChange }: TipTapProps) {
   return (
     <div className='relative w-full prose'>
       <div className='sticky top-24 left-0 w-full mx-auto z-10 bg-fourth bg-opacity-70 backdrop-blur-[0.5rem]'>
-        <Toolbar editor={editor} content={content} />
+        <Toolbar editor={editor} />
       </div>
       <BubbleMenu editor={editor}>
         <BubbleToolbar editor={editor} />
