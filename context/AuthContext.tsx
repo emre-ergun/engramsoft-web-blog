@@ -64,6 +64,7 @@ export default function AuthProvider({ children }: PropsWithChildren) {
 
   useEffect(() => {
     const fetchProfile = async () => {
+      setLoading(true);
       if (session) {
         setLoading(true);
         const { data } = await supabase
@@ -72,7 +73,8 @@ export default function AuthProvider({ children }: PropsWithChildren) {
           .eq('id', session.user.id)
           .single();
         setProfile(data || null);
-        console.log(data);
+      } else {
+        setProfile(null);
       }
       setLoading(false);
     };
