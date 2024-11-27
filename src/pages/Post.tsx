@@ -20,7 +20,7 @@ function Post() {
   return (
     <div className='min-h-[calc(100vh-48px)] w-full flex flex-col gap-4 items-center mt-10'>
       {post && (
-        <div className='w-full'>
+        <div className='w-full drop-shadow-2xl shadow-2xl p-4'>
           <div className='relative w-full p-4 overflow-hidden flex flex-col min-h-[16rem] items-center justify-center '>
             <h1 className='text-4xl font-bold bg-secondary text-fourth px-2'>
               {post.title}
