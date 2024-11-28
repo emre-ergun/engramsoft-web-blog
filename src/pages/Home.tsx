@@ -1,37 +1,27 @@
-import PostCard from '../components/PostCard';
 import { CiSearch } from 'react-icons/ci';
 import Qoute from '@/src/components/Qoute';
-import MainLoading from '@/src/components/MainLoading';
-import { usePostLists } from '@/api/posts';
+import PostView from '@/src/components/PostView';
+import { useRef, useState } from 'react';
+import PostViewAll from '@/src/components/PostViewAll';
 
 function Home() {
-  const { data: posts, error, isLoading } = usePostLists();
+  const [keyword, setKeyword] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  if (isLoading)
-    return (
-      <div className='h-[calc(100vh-48px)] w-full flex flex-col gap-4 items-center justify-center mt-10'>
-        <MainLoading />
-      </div>
-    );
-  if (error)
-    return (
-      <div className='h-[calc(100vh-48px)] w-full flex flex-col gap-4 justify-center items-center mt-10'>
-        <h1>Failed to fetch posts</h1>
-      </div>
-    );
   return (
-    <div className='min-h-[calc(100vh-48px)] w-full flex flex-col gap-4 justify-center mt-10'>
+    <div className='min-h-[calc(100vh-48px)] w-full flex flex-col gap-4 mt-10'>
       <Qoute />
       <div className='flex items-center justify-center my-10 w-full'>
         <form
           onSubmit={e => {
             e.preventDefault();
-            console.log('submitted');
+            setKeyword(inputRef.current?.value || '');
           }}
           className='w-full flex items-center justify-center'
         >
           <div className='relative h-12 w-full sm:w-4/5 shadow-lg rounded-full'>
             <input
+              ref={inputRef}
               id='search'
               name='search'
               type='text'
@@ -48,22 +38,7 @@ function Home() {
           </div>
         </form>
       </div>
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8'>
-        {posts?.map(post => (
-          <div key={post.id} className='min-h-[400px]'>
-            <PostCard
-              id={post.id}
-              title={post.title}
-              description={post.description}
-              keywords={post.keywords}
-              author={post.author}
-              cover_image={post.cover_image}
-              created_at={post.created_at}
-              ai_generated={post.ai_generated}
-            />
-          </div>
-        ))}
-      </div>
+      {keyword !== '' ? <PostView keyword={keyword} /> : <PostViewAll />}
       <div className='flex items-center justify-center mt-6 '>
         {/* <button
           onClick={loadMoreHandle}

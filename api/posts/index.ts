@@ -19,12 +19,13 @@ export const usePostLists = () => {
 
 export const usePostListsByKeyword = (keyword: string) => {
   return useQuery({
-    queryKey: ['posts'],
+    queryKey: ['posts', keyword],
     queryFn: async () => {
       const { data, error } = await supabase
         .from('posts')
-        .select('*')
-        .filter('keywords', 'cs', keyword);
+        .select()
+        .contains('keywords', [`${keyword}`]);
+
       if (error) {
         throw new Error(error.message);
       }

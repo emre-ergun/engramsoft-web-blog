@@ -30,6 +30,7 @@ function PostEditor() {
       content,
       keywords: keywords
         .split(',')
+        .map(keyword => keyword.trim())
         .filter((keyword: string) => keyword.trim() !== '')
         .slice(0, 4),
       cover_image: coverImage,
