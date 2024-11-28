@@ -15,7 +15,7 @@ function Home() {
         <form
           onSubmit={e => {
             e.preventDefault();
-            setKeyword(inputRef.current?.value || '');
+            setKeyword(inputRef.current?.value.toLowerCase() || '');
           }}
           className='w-full flex items-center justify-center'
         >

@@ -33,7 +33,7 @@ function Post() {
             </div>
             <img
               src={post.cover_image}
-              className='absolute top-0 left-0 -z-10 object-cover blur-sm'
+              className='absolute top-0 left-0 -z-10 object-cover blur-sm w-full'
             />
           </div>
           <div className='ProseMirror whitespace-pre-line px-6 py-4 bg-fourth'>

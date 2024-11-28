@@ -30,8 +30,8 @@ function PostEditor() {
       content,
       keywords: keywords
         .split(',')
-        .map(keyword => keyword.trim())
-        .filter((keyword: string) => keyword.trim() !== '')
+        .map(keyword => keyword.trim().toLowerCase())
+        .filter((keyword: string) => keyword !== '')
         .slice(0, 4),
       cover_image: coverImage,
       author: profile.username,
@@ -208,7 +208,7 @@ function PostEditor() {
               </div>
               <img
                 src={coverImage}
-                className='absolute top-0 left-0 -z-10 object-cover blur-sm'
+                className='absolute top-0 left-0 -z-10 object-cover blur-sm w-full'
               />
             </div>
             <div className='ProseMirror whitespace-pre-line px-6 py-4 bg-fourth'>
