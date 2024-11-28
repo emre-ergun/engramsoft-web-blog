@@ -7,7 +7,7 @@ import SignUp from '@/src/pages/SignUp';
 import AuthProvider from '@/context/AuthContext';
 import QueryProvider from '@/context/QueryProvider';
 import Post from '@/src/pages/Post';
-import PostEditor from '@/src/components/Tiptap/PostEditor';
+import PostEditor from '@/src/pages/PostEditor';
 
 function App() {
   return (

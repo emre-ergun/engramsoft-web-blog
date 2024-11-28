@@ -66,7 +66,7 @@ function PostEditor() {
       >
         <div className='w-full sm:w-1/2 my-5 grid grid-cols-8 gap-2'>
           <label
-            htmlFor='Author'
+            htmlFor='author'
             className='col-span-2 flex items-center text-nowrap'
           >
             Author
@@ -117,7 +117,7 @@ function PostEditor() {
             className='pl-2 py-1 bg-white border border-secondary focus:outline-secondary col-span-6 flex items-center'
           />
           <label
-            htmlFor='keyword'
+            htmlFor='keywords'
             className='col-span-2 flex items-center text-nowrap'
           >
             Keywords
