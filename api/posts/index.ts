@@ -5,7 +5,10 @@ export const usePostLists = () => {
   return useQuery({
     queryKey: ['posts'],
     queryFn: async () => {
-      const { data, error } = await supabase.from('posts').select('*');
+      const { data, error } = await supabase
+        .from('posts')
+        .select('*')
+        .order('id', { ascending: false });
       if (error) {
         throw new Error(error.message);
       }
