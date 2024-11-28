@@ -1,7 +1,7 @@
 import { useAuth } from '@/context/AuthContext';
 import { supabase } from '@/lib/supabase';
 import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 function SignUp() {
   const [loadingSignUp, setLoadingSignUp] = useState(false);
@@ -69,9 +69,9 @@ function SignUp() {
         </button>
       </form>
       <div>
-        <a href='/sign-in' className='text-sm text-secondary'>
+        <Link to='/sign-in' className='text-sm text-secondary'>
           I have an account. <span className='underline'>Sign In</span>
-        </a>
+        </Link>
       </div>
     </div>
   );

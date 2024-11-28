@@ -14,7 +14,7 @@ function Header() {
 
   return (
     <div className='w-full overflow-hidden sticky top-0 right-0 z-[100] bg-fourth'>
-      <div className='w-full flex justify-between items-center min-h-[48px]'>
+      <div className='w-full flex justify-between items-center min-h-[48px] px-4'>
         <Link to='/' className='flex items-end gap-2'>
           <h1 className='text-xl border-2 border-primary px-2 py-1'>ENGRAM.</h1>
         </Link>
