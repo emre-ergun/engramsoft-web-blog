@@ -20,7 +20,7 @@ function App() {
             <Route path='/' element={<MainLayout />}>
               <Route index element={<Home />} />
               <Route path='edit' element={<PostEditor />} />
-              <Route path='post/:id' element={<Post />} />
+              <Route path='post/:id/:name' element={<Post />} />
               <Route path='sign-in' element={<SignIn />} />
               <Route path='sign-up' element={<SignUp />} />
               <Route path='*' element={<NotFound />} />

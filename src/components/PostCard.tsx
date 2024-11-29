@@ -31,7 +31,7 @@ function PostCard({
       </div>
       <div className='absolute bottom-0 left-0 w-full h-1/3 bg-secondary opacity-70 group-hover:opacity-90 group-hover:scale-x-[1.05] group-hover:scale-y-[1.15] transition-all duration-500'></div>
       <Link
-        to={`/post/${id}`}
+        to={`/post/${id}/${title.replace(/ /g, '-').toLowerCase()}`}
         className='flex flex-col h-full justify-end z-10'
       >
         <h2 className='text-md font-bold line-clamp-1'>{title}</h2>
